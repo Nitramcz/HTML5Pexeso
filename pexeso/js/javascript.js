@@ -20,27 +20,17 @@ $(document).ready(function() {
 });
 
 //vytvori nahodny dvoubarevny linearni gradient pro pozadi karet
-function NahodneBarvyKaret()
+var NahodneBarvyKaret = function()
 {
 	var grad = 'linear-gradient(to right, rgb(' + (Math.floor((256-199)*Math.random()) + 200) + ',' + (Math.floor((256-199)*Math.random()) + 200) + ',' + (Math.floor((256-199)*Math.random()) + 200) + ') ,rgb(' + (Math.floor((256-199)*Math.random()) + 200) + ',' + (Math.floor((256-199)*Math.random()) + 200) + ',' + (Math.floor((256-199)*Math.random()) + 200) + ')';	
 	$(".karta").css("background", grad);
 }
 
 //pocatecni promenne
-var pokusu = 0;
-var skore = 0;
-var pocet_otocenych_dvojic = 0;
-var pocet_kliku = 0;
-var karta1_id;
-var karta2_id;
-var karta1_img_id;
-var karta2_img_id;
-var pocet_karet;
-var pocet_dvojic;
-var max_pocet_karet = 36;
+var pokusu = 0, skore = 0, pocet_otocenych_dvojic = 0, pocet_kliku = 0, karta1_id, karta2_id, karta1_img_id, karta2_img_id, pocet_karet, pocet_dvojic, max_pocet_karet = 36;
 
 //vykresli na hraci plochu karty s obrazky pomoci CSS3
-function VykresleniKaret()
+var VykresleniKaret = function()
 {
 	pocet_dvojic = pocet_karet / 2;
 	//vytvori pole hodnot 0,0,1,1,2,2... = dvojice karet
@@ -68,7 +58,7 @@ function VykresleniKaret()
 }
 
 //udalost karta_click, stara se o otoceni karty(zobrazeni obrazku) a ulozeni jejiho indexu pro pozdejsi porovnani
-function karta_click()
+var karta_click = function()
 {
 	//karta_click.stopPropagation();
 	var id = $(this).attr("id"); // ziskame id otocene kraty, napr: "karta1"
@@ -102,7 +92,7 @@ function karta_click()
 }
 
 //porovna dve aktualne otocene karty -> bud obe stejne, ruzne nebo konec hry
-function PorovnaniKaret()
+var PorovnaniKaret = function()
 {	
 		if (karta1_img_id == karta2_img_id)
 		{	
@@ -152,7 +142,7 @@ function PorovnaniKaret()
 }
 
 //zobrazi uvodni obrazovku (znovunacteni stranky z cache)
-function restartovani()
+var restartovani = function()
 {
 	location.reload();
 }
