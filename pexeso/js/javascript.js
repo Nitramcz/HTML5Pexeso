@@ -4,7 +4,6 @@
 $(document).ready(function() {
 	$("#restart").click(restartovani); //nasazeni udalosti onclick na restart tlacitko
 	$("#konec").hide();
-	$("#ovladani").hide();
 
 	//zacne inicializace samotne hry
 	$("#btn_pocet_karet").click(function(){
@@ -16,16 +15,8 @@ $(document).ready(function() {
 		VykresleniKaret(); //vykresli hraci plochu s kartami
 		NahodneBarvyKaret(); //prida kartam nahodny barevny gradient
 		$("img").hide(); //schova obrazky karet
-		$("#ovladani").show(); //zobrazi skore a postup
 		$(".karta").click(karta_click); //nasadi udalost onclick pro vsechny karty
 	})	
-
-	//TBD - nefunkcni
-	//hlida zmenu velikosti okna prohlizece a prizpusobi tomu velikost herni plochy
-	$(window).resize(function(){
-	    var newwidth = $(window).width();
-	    var newheight = $(window).height();      	    
-	});
 });
 
 //vytvori nahodny dvoubarevny linearni gradient pro pozadi karet
@@ -67,16 +58,10 @@ function VykresleniKaret()
 	pole_karet.sort(function() { return 0.5 - Math.random() }); // 2x pro lepsi nahodnost
 
 	//vygenerovani karet pomoci hodnot z pole_karet
-	var br = Math.sqrt(pocet_karet);
 	for (var i = 0; i < pocet_karet; i++)
 	{								
 		var xsrc = "obr/obr" + pole_karet[i] + ".jpg";
 		//vytvori ctvercove pole o 4, 16 nebo 36 kartach
-		if ((i > 0) && (i % br == 0))
-		{
-			//$("#hraci-pole").append('<br />');
-		}		
-		//$("#hraci-pole").append('<div class="karta" id="karta' + i + '"></div>');
 		$("#hraci-pole").append('<div class="outer-karta"><div class="karta inner-karta" id="karta' + i + '"></div></div>');
 		$('#karta'+i).prepend('<img src='+xsrc+' />');
 	}
@@ -170,5 +155,4 @@ function PorovnaniKaret()
 function restartovani()
 {
 	location.reload();
-
 }
